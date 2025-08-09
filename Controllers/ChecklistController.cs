@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using backend.Models.Inspection;
 using backend.Dtos;
 using backend.Data;
+using WorkBench.Dtos;
 
 
 namespace backend.Controllers
@@ -80,11 +81,42 @@ namespace backend.Controllers
             return Ok(checklists);
         }
 
-        // [HttpPatch("update-checklist")]
-        // public IActionResult UpdateChecklist([FromBody] UpdateChecklist updateChecklist)
-        // {
+        [HttpPatch("checklist-update")]
+        public IActionResult ChecklistUpdate(string id, [FromBody] ChecklistUpdate checklistUpdate)
+        {
+            var existingChecklist = _context.Checklists.FirstOrDefault(c => c.Id == id);
 
-        // }
+            if (existingChecklist == null) {
+                return NotFound($"Checklist with {id} is not found");
+            }
+
+            if (!string.IsNullOrEmpty(checklistUpdate.PartNumber))
+            {
+                existingChecklist.PartNumber = checklistUpdate.PartNumber;
+            }
+
+            if (!string.IsNullOrEmpty(checklistUpdate.PartRevision)) 
+            {
+                existingChecklist.PartRevision = checklistUpdate.PartRevision;
+            }
+
+            if (!string.IsNullOrEmpty(checklistUpdate.Operation)) 
+            {
+                existingChecklist.Operation = checklistUpdate.Operation;
+            }
+
+            if (!string.IsNullOrEmpty(checklistUpdate.InspectorID)) 
+            {
+                existingChecklist.InspectorID = checklistUpdate.InspectorID;
+            }
+
+            if (checklistUpdate.Timestamp != null) 
+            {
+                existingChecklist.Timestamp = checklistUpdate.Timestamp;
+            }
+
+            return Ok();
+        }
 
         // [HttpDelete("delete-checklist")]
         // public IActionResult DeleteChecklist([FromBody] DeleteChecklist deleteChecklist)
