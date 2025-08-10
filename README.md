@@ -1,3 +1,10 @@
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="path/to/software/site">
+    <img src="/images/workbench-icon-design-free-vector.jpg" alt="Logo" width="80" height="80">
+  </a>
+
 ## WorkBench (An Engineers Utility Kit)
 WorkBench is a versatile manufacturing tool designed to streamline workflows for engineers, team leads, CNC programmers, inspectors, and other manufacturing professionals. It integrates multiple essential functions into one platform to improve accuracy and efficiency on the shop floor.
 
